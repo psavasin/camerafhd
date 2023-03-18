@@ -1,0 +1,60 @@
+<html>
+<head>
+  <title>Антон Хабаров. Видеонаблюдение</title>
+  <meta charset="UTF-8">
+  <link href="flowbite.min.css" rel="stylesheet" />
+  <script src="hls.js"></script>
+  <script>
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  </script>
+</head>
+<body style="height: 100%; margin: 0;">
+  <div style="display: flex; flex-flow: column; height: 100%;">
+    <div class="bg-white dark:bg-gray-800">
+      <br>
+      <p class="text-center text-4xl text-gray-900 dark:text-white">Установка и обслуживание видеонаблюдения</p>
+      <br>
+        <div style="justify-content: center;" class="flex items-center space-x-4 dark:bg-gray-800">
+          <img class="w-20 h-20 rounded-full" src="anton.jpg" alt="">
+          <div class="font-medium dark:text-white">
+            <div class="text-xl">Антон Хабаров</div>
+            <div class="text-m text-gray-500 dark:text-gray-400"><a href="tel:+79109780133">+7(910)978-01-33</a></div>
+          </div>
+        </div>
+      <br>
+    </div>
+    <div style="flex: 1 1 auto; display: flex; justify-content: center; align-items: center;" class="row content bg-white m-4 dark:bg-gray-800">
+        <video class="mx-auto border border-gray-200 rounded-lg dark:border-gray-700" width="80%" id="video" autolpay controls></video>
+        <script>
+          var video = document.getElementById('video');
+          var videoSrc = 'https://cam11.yar-net.ru/tqLKHnPt/index.m3u8?token=MS_6kadrD8bKD37byqYi';
+          if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoSrc;
+          } else if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MEDIA_ATTACHED, function () {
+              video.muted = true;
+              video.play();
+            });
+    }
+  </script>
+    </div>
+    <footer class=" bg-white m-4 dark:bg-gray-800">
+      <div class="w-full mx-auto container md:p-6 p-4 md:flex md:items-center md:justify-between">
+        <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"><a href="http://camerafhd.ru/" class="hover:underline">CameraFHD</a>. All Rights Reserved.
+        </span>
+        <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
+          <li><a href="mailto:info@camerafhd.ru" class="mr-4 hover:underline md:mr-6 ">Написать</a></li>
+          <li><a href="tel:+79109780133" class="mr-4 hover:underline md:mr-6">Позвонить</a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
